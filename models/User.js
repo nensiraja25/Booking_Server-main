@@ -7,7 +7,7 @@ const userSchema = new Schema(
   {
     role: {
       type: String,
-      enum: ["customer", "rider"],
+      enum: ["customer", "rider", "admin"],
       required: true,
     },
     phone: {
@@ -26,6 +26,7 @@ userSchema.methods.createAccessToken = function () {
     {
       id: this._id,
       phone: this.phone,
+      role: this.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
@@ -34,7 +35,7 @@ userSchema.methods.createAccessToken = function () {
 
 userSchema.methods.createRefreshToken = function () {
   return jwt.sign(
-    { id: this._id, phone: this.phone },
+    { id: this._id, phone: this.phone, role: this.role },
     process.env.REFRESH_TOKEN_SECRET,
     {
       expiresIn: process.env.REFRESH_TOKEN_EXPIRY,

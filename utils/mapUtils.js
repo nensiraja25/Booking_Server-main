@@ -13,11 +13,11 @@ export const calculateDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 export const calculateFare = (distance) => {
+  // Emergency-service pricing placeholder (industry-ready version would be dynamic by city/priority/SLA).
   const rateStructure = {
-    bike: { baseFare: 10, perKmRate: 5, minimumFare: 25 },
-    auto: { baseFare: 15, perKmRate: 7, minimumFare: 30 },
-    cabEconomy: { baseFare: 20, perKmRate: 10, minimumFare: 50 },
-    cabPremium: { baseFare: 30, perKmRate: 15, minimumFare: 70 },
+    AMBULANCE: { baseFare: 0, perKmRate: 0, minimumFare: 0 },
+    FIRE_BRIGADE: { baseFare: 0, perKmRate: 0, minimumFare: 0 },
+    ANIMAL_NGO: { baseFare: 0, perKmRate: 0, minimumFare: 0 },
   };
 
   const fareCalculation = (baseFare, perKmRate, minimumFare) => {
@@ -26,25 +26,20 @@ export const calculateFare = (distance) => {
   };
 
   return {
-    bike: fareCalculation(
-      rateStructure.bike.baseFare,
-      rateStructure.bike.perKmRate,
-      rateStructure.bike.minimumFare
+    AMBULANCE: fareCalculation(
+      rateStructure.AMBULANCE.baseFare,
+      rateStructure.AMBULANCE.perKmRate,
+      rateStructure.AMBULANCE.minimumFare
     ),
-    auto: fareCalculation(
-      rateStructure.auto.baseFare,
-      rateStructure.auto.perKmRate,
-      rateStructure.auto.minimumFare
+    FIRE_BRIGADE: fareCalculation(
+      rateStructure.FIRE_BRIGADE.baseFare,
+      rateStructure.FIRE_BRIGADE.perKmRate,
+      rateStructure.FIRE_BRIGADE.minimumFare
     ),
-    cabEconomy: fareCalculation(
-      rateStructure.cabEconomy.baseFare,
-      rateStructure.cabEconomy.perKmRate,
-      rateStructure.cabEconomy.minimumFare
-    ),
-    cabPremium: fareCalculation(
-      rateStructure.cabPremium.baseFare,
-      rateStructure.cabPremium.perKmRate,
-      rateStructure.cabPremium.minimumFare
+    ANIMAL_NGO: fareCalculation(
+      rateStructure.ANIMAL_NGO.baseFare,
+      rateStructure.ANIMAL_NGO.perKmRate,
+      rateStructure.ANIMAL_NGO.minimumFare
     ),
   };
 };
