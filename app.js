@@ -13,6 +13,7 @@ import cors from 'cors';
 import authRouter from './routes/auth.js';
 import rideRouter from './routes/ride.js';
 import adminRouter from "./routes/admin.js";
+import feedbackRouter from "./routes/feedback.js";
 
 // Import socket handler
 import handleSocketConnection from './controllers/sockets.js';
@@ -44,6 +45,7 @@ handleSocketConnection(io);
 app.use("/auth", authRouter);
 app.use("/ride", authMiddleware, rideRouter);
 app.use("/admin", authMiddleware, adminRouter);
+app.use("/feedback", authMiddleware, feedbackRouter);
 
 // Middleware
 app.use(notFoundMiddleware);

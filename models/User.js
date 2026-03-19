@@ -15,6 +15,21 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    name: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    registrationStatus: {
+      // Used for responder onboarding approval flow (rider/admin managed)
+      type: String,
+      enum: ["PENDING", "APPROVED", "REJECTED"],
+      default: "PENDING",
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
